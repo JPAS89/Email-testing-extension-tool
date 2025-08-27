@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "Email Text Extractor. Beta",
+  "version": "1.0",
+  "description": "Extract visible or live text from Gmail and Outlook emails.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "clipboardWrite"
+  ],
+  "host_permissions": [
+    "*://mail.google.com/*",
+    "*://outlook.live.com/*"
+  ],
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": {
+    	"128": "logo2.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://mail.google.com/*",
+        "https://outlook.live.com/*",
+		     "*://outlook.office.com/*"  
+      ],
+      "js": ["contentScript.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
