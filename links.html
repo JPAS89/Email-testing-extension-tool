@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Extractor links results</title>
+  
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      margin: 2em;
+      line-height: 1.6;
+      
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 10px;
+      
+    }
+    .btn-group {
+       display: flex;
+       gap: 8px; /* Espacio entre botones */
+    }
+
+    h2 {
+      color: #444;
+      margin: 0;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 10px;
+      border-radius: 5px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    li:nth-child(odd) {
+      background-color: #e9e9f3;
+    }
+
+    li:nth-child(even) {
+      background-color: #fdfdff;
+    }
+
+    a {
+      display: block;
+      padding: 12px 15px;
+      text-decoration: none;
+      color: #0056b3;
+      word-break: break-all;
+    }
+
+    a:hover {
+      background-color: #d1eaff;
+    }
+
+    .link-text {
+      font-weight: bold;
+    }
+
+    .link-href {
+      font-size: 0.9em;
+      color: #555;
+      display: block;
+      margin-top: 4px;
+    }
+
+    #copyBtn {
+      padding: 10px 15px;
+      font-size: 14px;
+      font-weight: bold;
+      color: #fff;
+      background-color: #1d3557;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    #copyBtn:hover {
+      background-color: #0056b3;
+    }
+
+    #copyBtn:active {
+      background-color: #004494;
+    }
+
+
+    #csvBtn {
+      padding: 10px 15px;
+      font-size: 14px;
+      font-weight: bold;
+      color: #fff;
+      background-color: #4ba36a;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    #csvBtn:hover {
+      background-color: #378853;
+    }
+
+    #csvBtn:active {
+      background-color: #378853;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h2>Extractor Links Results</h2>
+    <div class="btn-group">
+      <button id="copyBtn">Copy All Links</button>
+      <button id="csvBtn">CSV Export</button>
+    </div>
+  </div>
+  <p id="summary"></p>
+  <ul id="linksList"></ul>
+  
+  <script src="results.js"></script>
+</body>
+</html>

@@ -1,145 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Email Text Extractor</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QA Testing Tool</title>
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
+  <!-- Google Font: Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
+    /* box sizing */
+    * { box-sizing: border-box; }
+
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      margin: -7px;
+      background: linear-gradient(135deg, #1d3557, #457b9d);
+      width: 380px;         
+      height: 535px;      
       display: flex;
       justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: #ffffff;
-      margin: 0;
+      align-items: flex-start;
+      padding: 0px; 
+      overflow: hidden; 
+      
     }
+
     .container {
-      width: 400px;
-      height: 400px;
-      background-color: #696969;
-      border-radius: 12px;
-      padding: 20px;
+      width: 420px;
+      height: 520px;
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      padding: 5px;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+    
     }
-    h1 {
-      text-align: center;
-      color: #ffffff;
-      margin-bottom: 15px;
-      font-size: 20px;
 
+    h2 {
+      text-align: center;
+      color: #1d3557;
+      margin: 12px 5px;
+      font-size: 20px;
+      font-weight: 600;
     }
+
+    /* Navbar */
+    ul {
+      list-style: none;
+      margin: 0 0 10px 0;
+      padding: 0;
+      background-color: #1d3557;
+      display: flex;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    ul li a {
+      flex: 1;
+      text-align: center;
+      color: #fff;
+      padding: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 13px;
+      transition: background 0.25s ease;
+      display: block;
+    }
+    ul li a:hover,
+    ul li a.active {
+      background-color: #457b9d;
+    }
+
+    /* Sections (important: keep sections hidden by default) */
+    .section {
+      flex: 1;
+      display: none;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+    .section.active {
+      display: block;
+      padding-top: 0;
+      height: 535px;
+     
+    }
+
     .section-title {
       text-align: center;
-      font-size: 18px;
-      font-weight: bold;
-      margin: 10px 0;
-      color: #ffffff;
+      font-size: 15px;
+      font-weight: 600;
+      margin: 8px 0;
+      color: #1d3557;
     }
-    .buttons {
-      display :flex;
+
+    /* Dropdown row */
+    .dropdown-row {
+      display: flex;
       gap: 10px;
       margin-bottom: 15px;
       justify-content: center;
+      align-items: center;
+      width: 100%;
     }
+
+    .dropdown-row select {
+      flex: 1;
+      padding: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      cursor: pointer;
+      max-width: 200px;
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+      transition: border 0.15s ease;
+    }
+    .dropdown-row select:hover { border-color: #457b9d; }
+
+    /* Buttons container */
+    .buttons {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 12px;
+      justify-content: center;
+    }
+
     button {
       font-size: 14px;
-      justify-content: center;
-      font-weight: bold;
+      font-weight: 600;
       cursor: pointer;
       border: none;
-      border-radius: 8px;
-      color: #000000;
+      border-radius: 10px;
+      padding: 10px 14px;
+      transition: background 0.18s ease, transform 0.08s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    button:hover { transform: translateY(-1px); }
 
-    }
-    .gmail-btn {
-      flex: 1;
-      padding: 8px;
-      background-color: #eeb415;
-    }
-    .outlook-btn {
-      flex: 1;
-      padding: 8px;
-      background-color: #4ba0f4;
-    }
     .scan-btn {
-      flex: 1;
-      background-color:#ffffff;
-      color: #000000;
-      padding: 6px 10px;
-      font-size: 13px;
-      align-self: flex-start;
-      margin-bottom: 10px;
-      border-radius: 6px;
+      background-color: #2a9d8f;
+      color: #fff;
     }
-        .clear-btn {
-        background-color: #FF5C5C;
-        padding: 6px 10px;
-        font-size: 12px;
-        align-self: flex-end;
-        margin-top: 5px;
-        color: #FFFFFF;
-        border-radius: 6px;
-        }
-    .results-box {
-      flex: 1;
-      background-color: #FFFFFF;
-      border: 1px solid #ccc;
-      padding: 10px;
-      border-radius: 8px;
-      overflow-y: auto;
-      font-size: 14px;
-      color: #000000;
-      margin-bottom: 10px;
-      white-space: pre-wrap;
-    }
+    .scan-btn:hover { background-color: #238678; }
+
     .copy-btn {
-        flex: 1;  
+      background-color: #457b9d;
+      color: #fff;
+    }
+    .copy-btn:hover { background-color: #3b6f85; }
+
+    .clear-btn {
+      background-color: #e63946;
+      color: #fff;
+    }
+    .clear-btn:hover { background-color: #c5303a; }
+
+    /* Results */
+    .results-box {
       background-color: #ffffff;
-      color: #000000;
-      padding: 6px 10px;
+      border: 1px solid #e6e6ea;
+      padding: 12px;
+      border-radius: 10px;
+      overflow-y: auto;
       font-size: 13px;
-      align-self: flex-start;
+      color: #212529;
+      margin-bottom: 12px;
+      white-space: pre-wrap;
+      height: 140px;
     }
-    button:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
+
+    /* Section-specific (content text colors) */
+    .section p { color: #555; margin: 8px 12px; text-align: center; }
+
     .footer-text {
       font-size: 12px;
-      color: #ffffff;
+      color: #6c757d;
       text-align: center;
-      margin-top: 8px;
+      margin: 6px 0 0 0;
+    }
+
+    /* Small responsive tweak */
+    @media (max-width: 460px) {
+      .container { width: 360px; height: 520px; margin: 12px; }
     }
   </style>
 </head>
+
 <body>
   <div class="container">
-    <h1>Email Text Extractor</h1>
-    <div class="section-title">Select the Email Client App</div>
-    <div class="buttons">
-      <button class="gmail-btn" id="gmailBtn">Gmail</button>
-      <button class="outlook-btn" id="outlookBtn">Outlook</button>
-    </div>
-    
-    <div class="buttons"> 
-        <button class="scan-btn" id="scanBtn">Scan the email</button>
-        <button class="copy-btn" id="copyBtn">Copy the results</button>
+    <!-- Navbar -->
+    <ul>
+      <li><a class="active" data-section="emails">Emails</a></li>
+      <li><a data-section="banners">Banners</a></li>
+      <li><a data-section="about">About</a></li>
+    </ul>
+
+    <h2>TEST SUITE X</h2>
+
+    <!-- Section: Emails -->
+    <div id="emails" class="section active">
+      <div class="section-title">Select Category</div>
+
+      <div class="dropdown-row">
+        <select id="actionSelect">
+          <option value="">-- Select --</option>
+          <option value="copy">Copy</option>
+          <option value="links">Links</option>
+          <option value="code">ADA & Code</option>
+        </select>
+
+        <!-- Segundo dropdown dinámico -->
+        <select id="subActionSelect" style="display:none;"></select>
+      </div>
+
+      <div class="buttons">
+        <button class="scan-btn" id="scanBtn">Scan <i class="fas fa-search"></i></button>
+        <button class="copy-btn" id="copyBtn"><i class="fas fa-copy"></i> Copy</button>
+      </div>
+
+      <div class="section-title">Text Results</div>
+      <div class="results-box" id="resultsBox"></div>
+
+      <div class="buttons">
+        <button class="clear-btn" id="clearBtn"><i class="fa-solid fa-trash"></i> Clear results</button>
+      </div>
     </div>
 
-
-    <div class="section-title">Results</div>
-    <div class="results-box" id="resultsBox"></div>
-    <div class="buttons"> 
-        <button class="clear-btn" id="clearBtn">Clear results</button>
+    <!-- Section: Banners -->
+    <div id="banners" class="section">
+      <div class="section-title">Banners Testing (coming soon)</div>
+      <p>Do you have any idea? Please reach out and let's build this together</p>
     </div>
-    <div class="footer-text">Creative QA Craft. Author Jose Salas. 2025 </div>
-    
+
+    <!-- Section: About -->
+    <div id="about" class="section">
+      <div class="section-title">About</div>
+      <p>QA Testing Tool - Created by Jose Salas, 2025.<br/>A lightweight utility for email & banner testing.</p>
+    </div>
+
+    <div class="footer-text">Creative QA Craft. Jose Salas. 2025</div>
   </div>
-  
-  <script src="popup.js"> </script>
-  
+
+  <script src="popup.js"></script>
+  <script src="navBar.js"></script>
+  <script src="dinamicSelect.js"></script>
 </body>
 </html>
